@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- External data (Census geocoder, CDC PLACES) and AI calls live in `src/lib/health.server.ts`, exposed via `src/lib/health.functions.ts`; cache tables are service-role only (no client access) so the browser never talks to third parties or the DB directly.
+- The AI summary is built server-side from re-fetched tract numbers, not client input, so prompts can't be injected.
