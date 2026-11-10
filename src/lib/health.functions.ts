@@ -19,6 +19,21 @@ export const lookupAddress = createServerFn({ method: "POST" })
     }
   });
 
+export const lookupTract = createServerFn({ method: "POST" })
+  .inputValidator((input: { geoid: string }) => ({ geoid: String(input?.geoid ?? "") }))
+  .handler(async ({ data }) => {
+    const { buildTractReport, FriendlyError } = await import("./health.server");
+    try {
+      return { ok: true as const, report: await buildTractReport(data.geoid) };
+    } catch (e) {
+      console.error(e);
+      return {
+        ok: false as const,
+        error: e instanceof FriendlyError ? e.message : "Something went wrong while loading this neighborhood.",
+      };
+    }
+  });
+
 export const getSummary = createServerFn({ method: "POST" })
   .inputValidator((input: { geoid: string }) => ({ geoid: String(input?.geoid ?? "") }))
   .handler(async ({ data }) => {

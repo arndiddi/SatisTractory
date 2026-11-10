@@ -14,6 +14,96 @@ export type Database = {
   }
   public: {
     Tables: {
+      county_geometry_cache: {
+        Row: {
+          county_fips: string
+          fetched_at: string
+          geojson: Json
+          state_fips: string
+        }
+        Insert: {
+          county_fips: string
+          fetched_at?: string
+          geojson: Json
+          state_fips: string
+        }
+        Update: {
+          county_fips?: string
+          fetched_at?: string
+          geojson?: Json
+          state_fips?: string
+        }
+        Relationships: []
+      }
+      hospital_ratings: {
+        Row: {
+          emergency_services: string | null
+          facility_id: string
+          facility_name: string
+          hospital_type: string | null
+          mortality_better: number
+          mortality_worse: number
+          overall_rating: string | null
+          readmission_better: number
+          readmission_worse: number
+          safety_better: number
+          safety_worse: number
+          zip_code: string
+        }
+        Insert: {
+          emergency_services?: string | null
+          facility_id: string
+          facility_name: string
+          hospital_type?: string | null
+          mortality_better?: number
+          mortality_worse?: number
+          overall_rating?: string | null
+          readmission_better?: number
+          readmission_worse?: number
+          safety_better?: number
+          safety_worse?: number
+          zip_code: string
+        }
+        Update: {
+          emergency_services?: string | null
+          facility_id?: string
+          facility_name?: string
+          hospital_type?: string | null
+          mortality_better?: number
+          mortality_worse?: number
+          overall_rating?: string | null
+          readmission_better?: number
+          readmission_worse?: number
+          safety_better?: number
+          safety_worse?: number
+          zip_code?: string
+        }
+        Relationships: []
+      }
+      nearby_cache: {
+        Row: {
+          category: string
+          fetched_at: string
+          geoid: string
+          radius_km: number
+          results: Json
+        }
+        Insert: {
+          category: string
+          fetched_at?: string
+          geoid: string
+          radius_km: number
+          results: Json
+        }
+        Update: {
+          category?: string
+          fetched_at?: string
+          geoid?: string
+          radius_km?: number
+          results?: Json
+        }
+        Relationships: []
+      }
       state_baselines: {
         Row: {
           averages: Json

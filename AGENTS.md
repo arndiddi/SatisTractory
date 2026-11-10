@@ -32,3 +32,5 @@ use the editor.
 ## Project rules
 - External data (Census geocoder, CDC PLACES) and AI calls live in `src/lib/health.server.ts`, exposed via `src/lib/health.functions.ts`; cache tables are service-role only (no client access) so the browser never talks to third parties or the DB directly.
 - The AI summary is built server-side from re-fetched tract numbers, not client input, so prompts can't be injected.
+- CMS hospital ratings come from the service-role-only `hospital_ratings` table (a seeded snapshot of the CMS Provider Data API), not a live API call — data.cms.gov's Akamai edge blocks serverless/undici fetches with 403, so per-request calls fail. Refresh the table by re-downloading the dataset with curl and upserting.
+- Google Places calls go through the connector gateway in `nearby.server.ts` (never the browser key); Maps JS loads via `src/lib/google-maps.ts` with `loading=async` + callback, and the managed browser key only renders on `*.lovable.app`/`*.lovableproject.com` origins — not on sandbox localhost.

@@ -14,7 +14,7 @@ export function AddressSearch({ initial = "", showExamples = true }: { initial?:
   const navigate = useNavigate();
   const go = (address: string) => {
     const a = address.trim();
-    if (a) navigate({ to: "/report", search: { address: a } });
+    if (a) navigate({ to: "/report", search: { address: a, geoid: "" } });
   };
   return (
     <div className="w-full">

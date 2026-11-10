@@ -3,10 +3,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { ClientOnly } from "@tanstack/react-router";
-import { getSummary, lookupAddress } from "@/lib/health.functions";
+import { getSummary, lookupAddress, lookupTract } from "@/lib/health.functions";
 import { SECTIONS, type Report } from "@/lib/health";
 import { AddressSearch } from "@/components/AddressSearch";
 import { MeasureCard } from "@/components/MeasureCard";
+import { NearbySection } from "@/components/NearbySection";
 import { MethodologyFooter, SiteHeader } from "@/components/SiteChrome";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
@@ -14,7 +15,10 @@ import { Button } from "@/components/ui/button";
 const TractMap = lazy(() => import("@/components/TractMap"));
 
 export const Route = createFileRoute("/report")({
-  validateSearch: (s: Record<string, unknown>) => ({ address: typeof s["address"] === "string" ? s["address"] : "" }),
+  validateSearch: (s: Record<string, unknown>) => ({
+    address: typeof s["address"] === "string" ? s["address"] : "",
+    geoid: typeof s["geoid"] === "string" ? s["geoid"] : "",
+  }),
   head: () => ({
     meta: [
       { title: "Neighborhood health report — Neighborhood Health Lens" },
@@ -29,12 +33,13 @@ export const Route = createFileRoute("/report")({
 });
 
 function ReportPage() {
-  const { address } = Route.useSearch();
+  const { address, geoid } = Route.useSearch();
   const lookup = useServerFn(lookupAddress);
+  const lookupByTract = useServerFn(lookupTract);
   const q = useQuery({
-    queryKey: ["report", address],
-    queryFn: () => lookup({ data: { address } }),
-    enabled: address.length > 0,
+    queryKey: ["report", address, geoid],
+    queryFn: () => (address ? lookup({ data: { address } }) : lookupByTract({ data: { geoid } })),
+    enabled: address.length > 0 || geoid.length > 0,
     staleTime: Infinity,
     retry: false,
   });
@@ -47,7 +52,7 @@ function ReportPage() {
           <AddressSearch key={address} initial={address} showExamples={false} />
         </div>
         <div className="mt-8" aria-live="polite">
-          {!address ? (
+          {!address && !geoid ? (
             <ErrorState message="Enter an address above to get started." />
           ) : q.isPending ? (
             <LoadingSkeleton />
@@ -131,6 +136,16 @@ function ReportView({ report }: { report: Report }) {
           </section>
         );
       })}
+
+      <div className="mt-10">
+        <Button asChild variant="outline">
+          <Link to="/explore" search={{ state: report.state, county: report.geoid.slice(2, 5), measure: "DEPRESSION", dir: "vulnerable", worseOnly: false }}>
+            Explore all of {report.county} County →
+          </Link>
+        </Button>
+      </div>
+
+      <NearbySection geoid={report.geoid} lat={report.lat} lon={report.lon} />
     </div>
   );
 }

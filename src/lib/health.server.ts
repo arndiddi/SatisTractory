@@ -109,6 +109,37 @@ export async function buildReport(address: string): Promise<Report> {
   };
 }
 
+/** Build a report directly from a census tract ID (used by the Explore an Area map). */
+export async function buildTractReport(geoid: string): Promise<Report> {
+  if (!/^\d{11}$/.test(geoid)) throw new FriendlyError("Invalid tract ID.");
+  const where = `GEOID='${geoid}'`;
+  const url =
+    "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Tracts_Blocks/MapServer/10/query?where=" +
+    encodeURIComponent(where) +
+    "&outFields=GEOID,NAME&returnGeometry=true&outSR=4326&f=geojson";
+  const res = await fetch(url);
+  if (!res.ok) throw new FriendlyError("Couldn't load this census tract. Please try again shortly.");
+  const geojson = await res.json();
+  const feature = geojson?.features?.[0];
+  if (!feature) throw new FriendlyError("We couldn't find that census tract.");
+  const { centroidOf } = await import("./explore");
+  const centroid = centroidOf(feature);
+  if (!centroid) throw new FriendlyError("We couldn't locate this census tract on the map.");
+  const tractName = String(feature.properties?.NAME ?? geoid);
+  const t = await buildTractData(geoid);
+  return {
+    matchedAddress: `Census tract ${tractName}, ${t.county} County, ${t.state}`,
+    geoid,
+    tract: tractName,
+    county: t.county,
+    state: t.state,
+    population: t.population,
+    lat: centroid.lat,
+    lon: centroid.lon,
+    measures: t.measures,
+  };
+}
+
 const INSTRUCTIONS = `You write plain-language neighborhood health summaries for community organizers (not clinicians).
 Write 4–6 sentences as a single paragraph. Name the two or three largest gaps versus the state average, using the numbers given.
 Stay neutral and non-stigmatizing: describe the neighborhood, never judge its residents. Do not give medical advice. Do not make causal claims or speculate about reasons.

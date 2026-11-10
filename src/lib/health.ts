@@ -58,6 +58,17 @@ export const SECTIONS: { key: string; title: string; blurb: string; measures: Me
 
 export const ALL_MEASURES = SECTIONS.flatMap((s) => s.measures);
 
+/**
+ * Direction config: which way is "vulnerable" for each measure.
+ * CHECKUP, DENTAL and COLON_SCREEN are preventive care — higher is better.
+ * Everything else (including ACCESS2 = lack of insurance and EMOTIONSPT = lack
+ * of support) is a burden — higher is worse.
+ */
+export const MEASURE_DIRECTION: Record<string, Direction> = Object.fromEntries([
+  ...ALL_MEASURES.map((m) => [m.id, m.direction] as const),
+  ["COLON_SCREEN", "higherBetter"] as const,
+]);
+
 export type Comparison = "worse" | "similar" | "better";
 
 /** "Similar" when the state average falls inside the tract's confidence interval. */
