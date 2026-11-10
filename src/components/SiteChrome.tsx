@@ -1,14 +1,12 @@
 import { Link } from "@tanstack/react-router";
+import logo from "@/assets/tractwise-logo.png";
 
 export function SiteHeader() {
   return (
     <header className="border-b border-border bg-card">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-4 sm:px-6">
-        <Link to="/" className="flex items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-          <span aria-hidden className="grid h-8 w-8 place-items-center rounded-full bg-primary text-primary-foreground">
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2"><circle cx="11" cy="11" r="6" /><path d="m20 20-4.5-4.5" /></svg>
-          </span>
-          <span className="font-serif text-lg font-semibold text-foreground">Neighborhood Health Lens</span>
+        <Link to="/" aria-label="Tractwise home" className="flex items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          <img src={logo} alt="Tractwise" width={939} height={287} className="h-9 w-auto" />
         </Link>
         <nav className="ml-auto flex items-center gap-1" aria-label="Main">
           <Link

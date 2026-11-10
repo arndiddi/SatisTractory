@@ -21,7 +21,7 @@ export const Route = createFileRoute("/report")({
   }),
   head: () => ({
     meta: [
-      { title: "Neighborhood health report — Neighborhood Health Lens" },
+      { title: "Neighborhood health report — Tractwise" },
       { name: "description", content: "Census tract health estimates compared with the state average, with a plain-language summary." },
       { property: "og:title", content: "Neighborhood health report" },
       { property: "og:description", content: "Census tract health estimates vs. the state average, explained plainly." },

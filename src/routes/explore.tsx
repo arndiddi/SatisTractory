@@ -23,9 +23,9 @@ export const Route = createFileRoute("/explore")({
   validateSearch: search,
   head: () => ({
     meta: [
-      { title: "Explore an area — Neighborhood Health Lens" },
+      { title: "Explore an area — Tractwise" },
       { name: "description", content: "Compare census tracts across a county on any health measure, with uncertainty ranges and a color-coded map." },
-      { property: "og:title", content: "Explore an area — Neighborhood Health Lens" },
+      { property: "og:title", content: "Explore an area — Tractwise" },
       { property: "og:description", content: "Compare census tracts across a county on any health measure, with uncertainty ranges and a color-coded map." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

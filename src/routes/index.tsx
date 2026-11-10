@@ -5,9 +5,9 @@ import { MethodologyFooter, SiteHeader } from "@/components/SiteChrome";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Neighborhood Health Lens — health profiles for any U.S. address" },
+      { title: "Tractwise — health profiles for any U.S. address" },
       { name: "description", content: "Enter a U.S. address to see its census tract's health profile compared with the state, explained in plain language." },
-      { property: "og:title", content: "Neighborhood Health Lens" },
+      { property: "og:title", content: "Tractwise" },
       { property: "og:description", content: "See any U.S. neighborhood's health profile vs. the state average, in plain language." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

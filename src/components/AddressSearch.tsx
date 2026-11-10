@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 
 export const EXAMPLES = [
   "1350 Massachusetts Ave, Cambridge, MA",
+  "35 Oxford St, Cambridge, MA",
+  "440 Huntington Ave, Boston, MA",
   "1600 Pennsylvania Ave NW, Washington, DC",
   "500 S Main St, Flint, MI",
 ];
