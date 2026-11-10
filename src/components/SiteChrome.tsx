@@ -1,12 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import logo from "@/assets/tractwise-logo.png";
+import logo from "@/assets/satisfactory-logo.png";
 
 export function SiteHeader() {
   return (
     <header className="border-b border-border bg-card">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-4 sm:px-6">
-        <Link to="/" aria-label="Tractwise home" className="flex items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-          <img src={logo} alt="Tractwise" width={939} height={287} className="h-9 w-auto" />
+        <Link to="/" aria-label="SatisTractory home" className="flex items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          <img src={logo} alt="SatisTractory" width={998} height={273} className="h-9 w-auto" />
         </Link>
         <nav className="ml-auto flex items-center gap-1" aria-label="Main">
           <Link
