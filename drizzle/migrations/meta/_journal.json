@@ -1,27 +1,5 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "7",
-      "when": 1794344510827,
-      "tag": "0000_migration",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1794345777231,
-      "tag": "0001_nearby_and_geometry_cache",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1794346204699,
-      "tag": "0002_hospital_ratings",
-      "breakpoints": true
-    }
-  ]
+  "entries": []
 }
