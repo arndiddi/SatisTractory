@@ -6,7 +6,7 @@
 
 **🥇 1st place at the Lovable Hackathon x Startup Trek (November 2026)**
 
-[Live app](https://satistractory.lovable.app/) · [Walkthrough](#try-it-in-60-seconds) · [How we handle uncertainty](#reading-the-numbers-honestly) · [How it works](#how-it-works) · [Team](#the-team)
+[Live app](https://satistractory1.lovable.app/) · [Walkthrough](#try-it-in-60-seconds) · [How we handle uncertainty](#reading-the-numbers-honestly) · [How it works](#how-it-works) · [Team](#the-team)
 
 ![React 19](https://img.shields.io/badge/React-19-20232A?logo=react&logoColor=61DAFB)
 ![TanStack Start](https://img.shields.io/badge/TanStack-Start-FF4154)
