@@ -143,7 +143,7 @@ A few decisions worth knowing about:
 You'll need [Node.js](https://nodejs.org/) 20 or newer.
 
 ```sh
-git clone https://github.com/YOUR-GITHUB-USERNAME/SatisTractory.git
+git clone https://github.com/arndiddi/SatisTractory.git
 cd SatisTractory
 npm install
 npm run dev     # opens the app at http://localhost:8080
