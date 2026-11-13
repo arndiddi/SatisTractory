@@ -43,7 +43,7 @@ That's SatisTractory.
 
 This is the same path we walked the judges through. Both addresses are one-click buttons on the home page.
 
-1. **Start with Harvard.** Search `35 Oxford St, Cambridge, MA`. The tract shows *lower* chronic disease than the Massachusetts average, but *higher* loneliness and lack of social and emotional support.
+1. **Start with Harvard.** Search `35 Oxford St, Cambridge, MA`. The tract shows *lower* chronic disease than the Massachusetts average, but *higher* loneliness.
 2. **Then Northeastern.** Search `440 Huntington Ave, Boston, MA`. Depression and frequent mental distress both come in above the state average.
 3. **Scroll to "What's nearby."** See hospitals, clinics, pharmacies, and schools within 1, 3, or 5 km.
 4. **Open "Explore an area."** Pick Suffolk County, MA and any measure to see which tracts carry the heaviest burden.
@@ -149,6 +149,7 @@ npm install
 npm run dev     # opens the app at http://localhost:8080
 npm test        # runs the unit tests
 ```
+If `npm install` gives you an error, install [Bun](https://bun.sh) and run `bun install` instead, then continue with `npm run dev`.
 
 The address lookup and CDC data work without any keys. The AI summary, maps, and nearby places need a few server-side credentials (an AI provider and Google Maps Platform) plus a Postgres database for the caches. On Lovable, Lovable Cloud and the Google Maps connector take care of all of that.
 
